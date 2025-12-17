@@ -74,7 +74,10 @@ async def pista(ctx, start_number, end_number):
             start_number, end_number = end_number, start_number
         
         result = random.randint(start_number, end_number)
-        await ctx.send(f"Pista: {result}")
+
+        selected_track = f"```ansi\n\u001b[1;2m####### 🌀 PISTA 🌀 #######\n            \u001b[1;2m{result}\n```"
+
+        await ctx.send(selected_track)
     except ValueError:
         await ctx.send("No se ha introducido un número válido.")
         
