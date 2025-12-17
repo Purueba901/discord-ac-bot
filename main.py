@@ -75,7 +75,7 @@ async def pista(ctx, start_number, end_number):
         
         result = random.randint(start_number, end_number)
 
-        selected_track = f"```ansi\n\u001b[1;2m####### 🌀 PISTA 🌀 #######\n            \u001b[1;2m{result}\n```"
+        selected_track = f"```ansi\n\u001b[1;2mPISTA: {result}\n```"
 
         await ctx.send(selected_track)
     except ValueError:
