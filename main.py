@@ -25,6 +25,7 @@ driver_role = int(os.getenv("DRIVER_ROLE_ID"))
 poll_channel = int(os.getenv("POLL_CHANNEL_ID"))
 standings_channel = int(os.getenv("STANDINGS_CHANNEL_ID"))
 ranking_channel = int(os.getenv("RANKING_CHANNEL_ID"))
+commands_channel = int(os.getenv("COMMANDS_CHANNEL_ID"))
 
 # //------------------------ FUNCTIONS ------------------------//
 async def generate_poll():
@@ -191,6 +192,17 @@ async def actualizar(ctx, race_qty):
             await ctx.send("No tienes permiso para actualizar el ranking.")
     except ValueError:
         await ctx.send("No se ha introducido un número válido.")
+
+# Delete all images from a channel
+@bot.command()
+async def borrar(ctx):
+    if ctx.channel.id != commands_channel:
+        return
+    
+    async for message in ctx.channel.history(limit=10):
+        for attachment in message.attachments:
+            if attachment.content_type and attachment.content_type.startswith('image'):
+                await message.delete()
 
 # //------------------------ RUN BOT ------------------------//
 
