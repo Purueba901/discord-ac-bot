@@ -199,7 +199,7 @@ async def borrar(ctx):
     if ctx.channel.id != commands_channel:
         return
     
-    async for message in ctx.channel.history(limit=10):
+    async for message in ctx.channel.history(limit=50):
         for attachment in message.attachments:
             if attachment.content_type and attachment.content_type.startswith('image'):
                 await message.delete()
